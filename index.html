@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#BE2841">
+<meta name="description" content="KidZania Taipei 奇薩尼亞台北親子攻略：依年紀篩選可玩職業，以及票價、營業時間與交通。@tiffany_travel_">
+<title>KidZania Taipei 親子攻略｜tiffany_travel_</title>
+<style>
+:root {
+  --red: #BE2841;
+  --orange: #F29432;
+  --quote: #E8311F;
+  --border: #201610;
+  --ink: #12100E;
+  --muted: #5A3728;
+  --cream: #FFF6EE;
+  --white: #FFFFFF;
+  --earn: #1F7A4D;
+  --earn-bg: #E7F6EE;
+  --pay: #E8311F;
+  --pay-bg: #FDE7E4;
+  --twd: #8A5A12;
+  --twd-bg: #FFF1D6;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: -apple-system, "PingFang TC", "Noto Sans TC", "Noto Sans CJK TC", "Microsoft JhengHei", sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; }
+.wrap { max-width: 480px; margin: 0 auto; padding: 0 0 108px; }
+
+/* Hero */
+.hero {
+  position: relative;
+  background: var(--red);
+  color: var(--white);
+  padding: 16px 18px 26px;
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  background: var(--orange);
+  clip-path: polygon(0 42%, 100% 0, 100% 100%, 0 100%);
+  z-index: 0;
+}
+.hero-inner { position: relative; z-index: 1; }
+.acct { font-size: 12.5px; opacity: .95; font-weight: 600; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 12.5px;
+  padding: 5px 11px 5px 9px;
+  margin: 8px 0 8px;
+  border: 2px solid var(--border);
+}
+.quotes {
+  display: inline-flex;
+  gap: 3px;
+  height: 15px;
+}
+.quotes i {
+  display: block;
+  width: 5px;
+  height: 15px;
+  background: var(--quote);
+  transform: skewX(-18deg);
+}
+h1 {
+  font-size: 23px;
+  line-height: 1.25;
+  margin: 0 0 6px;
+  text-shadow: 0 2px 0 var(--border);
+  letter-spacing: .02em;
+}
+.lead {
+  margin: 0 0 10px;
+  font-size: 13.5px;
+  text-shadow: 0 1px 0 rgba(32,22,16,.35);
+  word-break: keep-all;
+}
+.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.pill {
+  display: inline-block;
+  background: rgba(255,255,255,.95);
+  color: var(--ink);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.book-btn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16.5px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--white);
+  color: var(--quote);
+  border: 2.5px solid var(--border);
+  box-shadow: 3px 3px 0 var(--border);
+}
+.book-btn:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--border); }
+
+.topbar {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  background: var(--red);
+  color: #fff;
+  padding: 10px 16px;
+  border-bottom: 3px solid var(--orange);
+}
+.topbar.on { display: flex; }
+.topbar b { flex: 1; font-size: 15px; }
+.topbar .mini-book {
+  text-decoration: none;
+  background: #fff;
+  color: var(--quote);
+  font-weight: 800;
+  font-size: 12.5px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 2px solid var(--border);
+  white-space: nowrap;
+}
+
+.view { display: none; }
+.view.on { display: block; }
+.pad { padding: 16px 16px 8px; }
+.filter-wrap {
+  padding: 0 16px;
+  margin-top: -10px;
+  position: relative;
+  z-index: 2;
+}
+h2.sec {
+  font-size: 18px;
+  margin: 8px 0 10px;
+  padding-left: 10px;
+  border-left: 5px solid var(--quote);
+}
+.filter-wrap h2.sec {
+  margin: 0 0 8px;
+  color: var(--ink);
+  background: var(--cream);
+  display: inline-block;
+  padding: 2px 10px 2px 10px;
+  border-left: 5px solid var(--quote);
+  border-radius: 0 8px 8px 0;
+}
+.intro, .note {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+.note {
+  background: #fff;
+  border: 1px solid #F0D9C2;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.warn {
+  background: #FFF4D6;
+  border: 1.5px solid #E2B84A;
+  color: #5C4308;
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  margin: 0 0 14px;
+}
+
+.howto {
+  background: #fff;
+  border-radius: 16px;
+  border: 1.5px solid var(--border);
+  padding: 14px;
+  margin: 8px 0 12px;
+}
+.howto h3 { margin: 0 0 6px; font-size: 15px; }
+.howto p { margin: 0 0 8px; font-size: 14px; }
+.howto p:last-child { margin-bottom: 0; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
+.split div { border-radius: 12px; padding: 10px; font-size: 13.5px; }
+.split .earn-box { background: var(--earn-bg); }
+.split .pay-box { background: var(--pay-bg); }
+.split b { display: block; margin-bottom: 2px; }
+
+.filter-panel {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  padding: 14px;
+  margin-bottom: 12px;
+  box-shadow: 3px 3px 0 var(--border);
+}
+.filter-panel label {
+  display: block;
+  font-weight: 800;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.filter-panel label span {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--border);
+  font-size: 11px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  margin-left: 6px;
+  vertical-align: 1px;
+}
+select#ageSelect {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 14px 44px 14px 14px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  background: var(--cream) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23201610' d='M5 8l5 6 5-6z'/></svg>") no-repeat right 14px center;
+  color: var(--ink);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.chip {
+  border: 1.5px solid var(--border);
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 6px 11px;
+}
+.chip.on { background: var(--red); color: #fff; }
+.search {
+  width: 100%;
+  margin-top: 10px;
+  font: inherit;
+  font-size: 14px;
+  padding: 9px 12px;
+  border: 1px solid #E4CDB6;
+  border-radius: 12px;
+  background: var(--cream);
+}
+.count {
+  font-size: 14.5px;
+  font-weight: 800;
+  margin: 4px 0 12px;
+}
+.count em { color: var(--quote); font-style: normal; }
+
+.job {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.job-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.job-id {
+  flex: none;
+  min-width: 42px;
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 800;
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 3px 5px;
+  line-height: 1.2;
+}
+.job-id b { display: block; font-size: 14px; }
+.job h3 { flex: 1; margin: 0; font-size: 16.5px; line-height: 1.3; }
+.paytag {
+  flex: none;
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.paytag.earn { background: var(--earn-bg); color: var(--earn); }
+.paytag.pay { background: var(--pay-bg); color: var(--pay); }
+.paytag.twd { background: var(--twd-bg); color: var(--twd); }
+.job .meta { margin: 0; font-size: 12.5px; color: var(--muted); font-weight: 600; }
+.job .blurb { margin: 6px 0 0; font-size: 13.5px; }
+.job .age {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  background: #F3E9D9;
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+.job .age.def { background: #FFF4D6; color: #7A5A00; }
+.mini {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  background: var(--orange);
+  color: var(--border);
+  border-radius: 999px;
+  padding: 1px 6px;
+}
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 28px 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1.5px solid var(--border);
+  margin-bottom: 12px;
+}
+th, td {
+  text-align: left;
+  padding: 11px 12px;
+  border-bottom: 1px solid #F0D9C2;
+  vertical-align: top;
+  font-size: 14px;
+}
+th { width: 30%; background: #FFF1E4; font-size: 13px; }
+tr:last-child th, tr:last-child td { border-bottom: 0; }
+.price { font-weight: 800; color: var(--quote); font-size: 16px; }
+.tcard {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.tcard .k { font-size: 12px; font-weight: 800; color: var(--quote); letter-spacing: .06em; }
+.tcard h3 { margin: 2px 0 6px; font-size: 16px; }
+.tcard p { margin: 0; font-size: 14px; }
+.mapbtn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  margin-top: 12px;
+  padding: 13px;
+  border-radius: 14px;
+  background: var(--orange);
+  color: var(--border);
+  border: 2px solid var(--border);
+}
+
+.cta { margin-top: 18px; display: grid; gap: 10px; }
+.cbtn {
+  display: block;
+  text-align: center;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #fff;
+}
+.ig { background: linear-gradient(90deg, #F58529, #DD2A7B, #8134AF); }
+.line { background: #06C755; }
+footer.disc {
+  margin-top: 16px;
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+nav.tabs {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  background: #fff;
+  border-top: 1.5px solid #E8D3C0;
+  display: flex;
+  justify-content: center;
+  padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+  z-index: 20;
+}
+nav.tabs button {
+  flex: 1;
+  max-width: 110px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 0;
+  border-radius: 12px;
+}
+nav.tabs button span { font-size: 20px; line-height: 1.2; }
+nav.tabs button.on { color: var(--ink); font-weight: 700; background: #FDE8D8; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="acct">@tiffany_travel_ ・ 北台灣親子旅遊</div>
+    <div class="badge"><span class="quotes" aria-hidden="true"><i></i><i></i></span>KidZania 快報</div>
+    <h1>KidZania Taipei<br>親子職人體驗攻略</h1>
+    <p class="lead">試營運 11/24 至 12/6。選孩子年紀，立刻看可玩的職業。</p>
+    <div class="pills">
+      <span class="pill">孩童票 1,400 元</span>
+      <span class="pill">成人票 700 元</span>
+      <span class="pill">3 至 17 歲</span>
+      <span class="pill">現場不售票</span>
+    </div>
+    <a class="book-btn" href="https://www.trip.com/t/fzpjB4FUBX2" target="_blank" rel="noopener noreferrer">前往 Tiffany 專屬購票連結</a>
+  </div>
+</header>
+
+<div class="topbar" id="topbar">
+  <b>KidZania Taipei</b>
+  <a class="mini-book" href="https://www.trip.com/t/fzpjB4FUBX2" target="_blank" rel="noopener noreferrer">前往購票</a>
+</div>
+
+<section class="view on" id="v-home">
+  <div class="filter-wrap">
+    <h2 class="sec">依年紀查看可玩職業</h2>
+    <div class="filter-panel">
+      <label for="ageSelect">孩子幾歲？<span>點選篩選</span></label>
+      <select id="ageSelect" aria-label="選擇孩子年紀">
+        <option value="all">全部年齡</option>
+        <option value="3">3 歲</option>
+        <option value="4">4 歲</option>
+        <option value="5">5 歲</option>
+        <option value="6">6 歲</option>
+        <option value="7">7 歲</option>
+        <option value="8">8 歲</option>
+        <option value="9">9 歲</option>
+        <option value="10">10 歲以上</option>
+      </select>
+      <div class="chips" role="group" aria-label="依 kidZos 類型篩選">
+        <button type="button" class="chip on" data-pay="all">全部類型</button>
+        <button type="button" class="chip" data-pay="earn">賺 kidZos</button>
+        <button type="button" class="chip" data-pay="pay">付 kidZos</button>
+        <button type="button" class="chip" data-pay="twd">另付新台幣</button>
+      </div>
+      <input class="search" id="jobSearch" type="search" placeholder="搜尋職業、品牌或場館（選用）" autocomplete="off">
+    </div>
+  </div>
+
+  <div class="pad" style="padding-top:0">
+    <div class="count" id="jobCount"></div>
+    <div id="jobList"></div>
+    <p class="note">選擇孩子年紀後，會立刻列出該歲數可以玩的職業。資料有寫年齡門檻的會嚴格照實篩選；資料未特別寫年齡限制的，依孩童票暫以 3 歲起可玩，並在卡片上註明。實際最低年齡限制以現場公告為準。金額與費用可能調整。台塑生醫、觀光巴士現場確認 3 歲就可以參加。燒肉職人、披薩工坊另外收新台幣，不能用 kidZos 抵。</p>
+
+    <h2 class="sec">kidZos 怎麼賺、怎麼花</h2>
+    <div class="howto">
+      <p>一入園會先發 50 kidZos。有些體驗做完能賺 kidZos，有些要先付 kidZos 才能參加。</p>
+      <div class="split">
+        <div class="earn-box"><b>賺錢：你是去上班</b>完成任務就領薪水。例如外科醫師、空服員、電商專員、觀光巴士導遊。</div>
+        <div class="pay-box"><b>付費：你是去上課</b>需要專業訓練的體驗，要先付 kidZos 學技能。例如機師、消防員、中醫師、秘密特務。</div>
+      </div>
+      <p>DonQ、黑松、森永這三個付費項目，做完都能把成品帶回家。名稱像職業不代表一定賺錢，同一種領域裡，有的是工作、有的是訓練。kidZos 是園區專用貨幣，不能換成現金。</p>
+      <p>燒肉職人、披薩工坊另外收新台幣，不能用 kidZos 抵。金額可能調整，以現場公告為準。</p>
+    </div>
+
+    <p class="warn">試營運期間（11/24 至 12/6）每日限量，現場不售票，需事先線上購票。成人必須至少陪同一名 3 至 17 歲的孩子入場，不能單獨購票。</p>
+    <a class="book-btn inpage" href="https://www.trip.com/t/fzpjB4FUBX2" target="_blank" rel="noopener noreferrer">前往 Tiffany 專屬購票連結</a>
+    <div class="cta">
+      <a class="cbtn ig" href="https://www.instagram.com/tiffany_travel_/" target="_blank" rel="noopener">追蹤 @tiffany_travel_</a>
+      <a class="cbtn line" href="https://line.me/ti/g2/4rqsnNA_iLEYufeOGXY7y0ts_n1dswmvV9k_7Q?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" rel="noopener">加入旅遊群組</a>
+    </div>
+    <footer class="disc">
+      這是個人整理頁，不是官方網站。項目、位置、票價與規則以官方公告與現場為準。<br>
+      資料參考：NOWNEWS、TVBS、Trip.com 部落格
+    </footer>
+  </div>
+</section>
+
+<section class="view" id="v-tickets">
+  <div class="pad">
+    <h2 class="sec">票價資訊</h2>
+    <table>
+      <tr><th>票種</th><td>孩童票<br><span class="price">1,400 元</span></td></tr>
+      <tr><th>適用年齡</th><td>3 至 17 歲</td></tr>
+      <tr><th>票種</th><td>成人票<br><span class="price">700 元</span></td></tr>
+      <tr><th>適用年齡</th><td>18 歲以上</td></tr>
+    </table>
+    <p class="warn">成人必須至少陪同一名 3 至 17 歲的孩子入場，不能單獨購票。</p>
+    <p class="note">試營運期間（11/24 至 12/6）每日限量，現場不售票，需事先線上購票。項目、票價與規則以官方公告與現場為準。</p>
+    <a class="book-btn inpage" href="https://www.trip.com/t/fzpjB4FUBX2" target="_blank" rel="noopener noreferrer">前往 Tiffany 專屬購票連結</a>
+  </div>
+</section>
+
+<section class="view" id="v-hours">
+  <div class="pad">
+    <h2 class="sec">營業時間</h2>
+    <table>
+      <tr><th>平日</th><td>9:00 至 17:00</td></tr>
+      <tr><th>週末</th><td>10:00 至 18:00</td></tr>
+      <tr><th>試營運</th><td>11/24 至 12/6，每日限量，現場不售票</td></tr>
+    </table>
+    <p class="note">以上為試營運期間資訊，後續營業時間與規則以官方公告為準。</p>
+    <a class="book-btn inpage" href="https://www.trip.com/t/fzpjB4FUBX2" target="_blank" rel="noopener noreferrer">前往 Tiffany 專屬購票連結</a>
+  </div>
+</section>
+
+<section class="view" id="v-transit">
+  <div class="pad">
+    <h2 class="sec">交通資訊</h2>
+    <div class="tcard">
+      <div class="k">地點</div>
+      <h3>Mitsui Shopping Park LaLaport 南港 5 樓</h3>
+      <p>台北市南港區經貿二路 131 號<br>樂園位在 LaLaport 南港 5 樓與 6 樓（卡片上的 1 樓／2 樓是樂園內樓層）。</p>
+      <a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=%E5%8F%B0%E5%8C%97%E5%B8%82%E5%8D%97%E6%B8%AF%E5%8D%80%E7%B6%93%E8%B2%BF%E4%BA%8C%E8%B7%AF131%E8%99%9F+LaLaport%E5%8D%97%E6%B8%AF" target="_blank" rel="noopener">一鍵開啟 Google Maps 導航</a>
+    </div>
+    <div class="tcard">
+      <div class="k">最近</div>
+      <h3>文湖線 南港軟體園區站</h3>
+      <p>2 號出口，步行約 1 至 2 分鐘。</p>
+    </div>
+    <div class="tcard">
+      <div class="k">捷運</div>
+      <h3>板南線 / 文湖線 南港展覽館站</h3>
+      <p>1 號出口，沿經貿二路步行約 3 至 5 分鐘。</p>
+    </div>
+    <div class="tcard">
+      <div class="k">高鐵 / 台鐵</div>
+      <h3>搭到南港車站</h3>
+      <p>轉乘板南線 1 站到南港展覽館站；也可沿經貿二路步行約 10 至 15 分鐘。</p>
+    </div>
+    <div class="tcard">
+      <div class="k">開車</div>
+      <h3>商場地下停車場 B2 至 B5</h3>
+      <p>汽車由經貿一路入口或經貿二路 105 巷入口進入；機車建議走經貿二路 157 巷入口。</p>
+      <p style="margin-top:8px">假日停車滿場時，可考慮周邊的南港展覽館停車場或中國信託金融園區地下停車場。平日尖峰與假日建議搭捷運，南港一帶商辦車流較大。</p>
+    </div>
+    <footer class="disc">這是個人整理頁，不是官方網站。項目、位置、票價與規則以官方公告與現場為準。</footer>
+  </div>
+</section>
+
+</div>
+
+<nav class="tabs" aria-label="頁面導覽">
+  <button type="button" data-v="home" class="on"><span>🎯</span>職業查詢</button>
+  <button type="button" data-v="tickets"><span>🎫</span>票價</button>
+  <button type="button" data-v="hours"><span>🕘</span>時間</button>
+  <button type="button" data-v="transit"><span>🚇</span>交通</button>
+</nav>
+
+<script>
+const JOBS = [{"name": "半導體工程師", "brand": "台積電", "venue": "半導體製造晶圓廠", "num": "7", "floor": "1 樓", "min_age": 5, "age_source": "stated", "pay_type": "earn", "amount": 12, "highlight": "穿上防塵衣，走進晶圓廠體驗館。", "take_home": false, "taiwan_only": false}, {"name": "外科醫師", "brand": "國泰健康園區", "venue": "醫院／急診室", "num": "19", "floor": "1 樓", "min_age": 5, "age_source": "stated", "pay_type": "earn", "amount": 12, "highlight": "在醫院／急診室體驗外科醫師工作，學習醫療與健康照護。", "take_home": false, "taiwan_only": false}, {"name": "建築師", "brand": "遠雄建築", "venue": "建築工作室", "num": "21", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 10, "highlight": "當建築師，動手蓋房子。", "take_home": false, "taiwan_only": false}, {"name": "動物醫師", "brand": "特百滋", "venue": "動物醫院", "num": "1", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 10, "highlight": "在動物醫院體驗小小動物醫師，為寵物做健康檢查。", "take_home": false, "taiwan_only": false}, {"name": "電信工程師", "brand": "中華電信", "venue": "智慧通信總部", "num": "28", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 10, "highlight": "在智慧通信總部體驗電信工程師的工作，認識通訊是怎麼連接起來的。", "take_home": false, "taiwan_only": false}, {"name": "救護員", "brand": "國泰健康園區", "venue": "醫院／急診室", "num": "19", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 10, "highlight": "在醫院／急診室體驗救護員工作，學習醫療與健康照護。", "take_home": false, "taiwan_only": false}, {"name": "警察", "brand": "", "venue": "警察局", "num": "16", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 10, "highlight": "在警察局體驗小小警察，學習巡邏與辦案。", "take_home": false, "taiwan_only": false}, {"name": "健康管理師", "brand": "國泰健康園區", "venue": "健康管理中心", "num": "18", "floor": "1 樓", "min_age": 5, "age_source": "stated", "pay_type": "earn", "amount": 10, "highlight": "在健康管理中心體驗健康檢查與保健，認識健康管理師的工作。", "take_home": false, "taiwan_only": false}, {"name": "室內設計師", "brand": "宜得利 NITORI", "venue": "室內設計中心", "num": "14", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "在室內設計中心動手規劃空間，完成一份自己的設計作品。", "take_home": false, "taiwan_only": false}, {"name": "食品專家", "brand": "新東陽", "venue": "食品館", "num": "2", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "當食品館店員，學習怎麼結帳，還能體驗烤豬肉乾。", "take_home": false, "taiwan_only": false}, {"name": "空服員", "brand": "星宇航空", "venue": "航空學院", "num": "30", "floor": "2 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "換上制服當小小空服員，體驗客艙服務。", "take_home": false, "taiwan_only": false}, {"name": "淨水工程師", "brand": "賀眾牌", "venue": "淨水實驗室", "num": "8", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "在淨水實驗室認識水是怎麼被過濾與淨化的。", "take_home": false, "taiwan_only": false}, {"name": "護理師", "brand": "國泰健康園區", "venue": "產後護理之家", "num": "20", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "在產後護理之家（月子照護中心）體驗護理師工作，學習照顧新生兒。", "take_home": false, "taiwan_only": false}, {"name": "眼鏡設計師", "brand": "KlassiC", "venue": "眼鏡設計中心", "num": "26", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "在眼鏡設計中心體驗如何設計與搭配眼鏡。", "take_home": false, "taiwan_only": false}, {"name": "睡眠研究員", "brand": "眠豆腐", "venue": "睡眠研究中心", "num": "37", "floor": "2 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "在睡眠研究中心認識睡眠與床墊，體驗研究員的工作。", "take_home": false, "taiwan_only": false}, {"name": "電商專員", "brand": "蝦皮購物", "venue": "電商營運中心", "num": "22", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "當揀貨員、出派送任務，做完記得領工資。", "take_home": false, "taiwan_only": false}, {"name": "乳牛健康管理師", "brand": "鮮乳坊", "venue": "鮮乳研究所", "num": "9", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "在鮮乳研究所認識乳牛照護，體驗鮮乳是怎麼把關的。", "take_home": false, "taiwan_only": false}, {"name": "布袋戲操偶師", "brand": "霹靂布袋戲", "venue": "布袋戲造影所", "num": "38", "floor": "2 樓", "min_age": 5, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "操作布袋戲偶上台演出，體驗傳統戲曲表演。", "take_home": false, "taiwan_only": false}, {"name": "油漆職人", "brand": "青葉油漆", "venue": "油漆工坊", "num": "33", "floor": "2 樓", "min_age": 5, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "在油漆工坊學習調色與上漆，體驗油漆職人的工作。", "take_home": false, "taiwan_only": false}, {"name": "舞台劇演員", "brand": "AMcreative", "venue": "表演工作室", "num": "12", "floor": "1 樓", "min_age": 5, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "在表演工作室登台演出，體驗從排練到表演的過程。", "take_home": false, "taiwan_only": false}, {"name": "銀行員", "brand": "中國信託", "venue": "銀行", "num": "15", "floor": "1 樓", "min_age": 5, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "完成任務賺 KidZos，記得開戶，把錢存進去。", "take_home": false, "taiwan_only": false}, {"name": "頭皮養護造型師", "brand": "台塑生醫", "venue": "頭皮養護與造型中心", "num": "17", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 8, "highlight": "穿上制服認識頭皮健康，用高倍頭皮檢測儀學頭皮護理，化身職業造型師。", "take_home": false, "taiwan_only": false}, {"name": "觀光巴士導遊", "brand": "DJB 觀光巴士", "venue": "DJB 觀光巴士", "num": "27", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "earn", "amount": 5, "highlight": "擔任觀光巴士導遊，帶領乘客認識城市景點。", "take_home": false, "taiwan_only": false}, {"name": "機師", "brand": "星宇航空", "venue": "航空學院", "num": "30", "floor": "2 樓", "min_age": 3, "age_source": "stated", "pay_type": "pay", "amount": 10, "highlight": "小小機師坐進駕駛艙開飛機。", "take_home": false, "taiwan_only": false}, {"name": "糖果研究員", "brand": "森永", "venue": "糖果研發中心", "num": "35", "floor": "2 樓", "min_age": 3, "age_source": "stated", "pay_type": "pay", "amount": 10, "highlight": "自己做嗨啾軟糖。可把成品帶回家。", "take_home": true, "taiwan_only": false}, {"name": "烘焙師", "brand": "DonQ", "venue": "烘焙坊", "num": "36", "floor": "2 樓", "min_age": 3, "age_source": "stated", "pay_type": "pay", "amount": 10, "highlight": "當小小烘焙師，做小可頌。可把成品帶回家。", "take_home": true, "taiwan_only": false}, {"name": "秘密特務", "brand": "New Balance", "venue": "特務訓練中心", "num": "6", "floor": "1 樓", "min_age": 5, "age_source": "stated", "pay_type": "pay", "amount": 10, "highlight": "在特務訓練中心體驗關卡挑戰，化身小小秘密特務。", "take_home": false, "taiwan_only": false}, {"name": "益生菌研發人員", "brand": "農純鄉", "venue": "益生菌實驗室", "num": "25", "floor": "1 樓", "min_age": 5, "age_source": "stated", "pay_type": "pay", "amount": 10, "highlight": "在益生菌實驗室體驗研發工作，認識益生菌是怎麼被研究的。", "take_home": false, "taiwan_only": false}, {"name": "大樓維修員", "brand": "New Balance", "venue": "攀登訓練中心", "num": "5", "floor": "1 樓", "min_age": 7, "age_source": "stated", "pay_type": "pay", "amount": 10, "highlight": "化身攀岩高手，當小小大樓維修員。", "take_home": false, "taiwan_only": false}, {"name": "中醫師", "brand": "登義中藥行", "venue": "中藥行", "num": "24", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "pay", "amount": 8, "highlight": "台灣限定。化身小小神農氏、小小中醫師，動手抓中藥。", "take_home": false, "taiwan_only": true}, {"name": "飲料研發員", "brand": "黑松", "venue": "沙士研發中心", "num": "31", "floor": "2 樓", "min_age": 3, "age_source": "default", "pay_type": "pay", "amount": 8, "highlight": "當飲料研發專員，親手製作沙士。可把成品帶回家。", "take_home": true, "taiwan_only": false}, {"name": "消防員", "brand": "ISUZU", "venue": "消防局", "num": "29", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "pay", "amount": 8, "highlight": "在消防局體驗小小消防員，學習訓練與出勤任務。", "take_home": false, "taiwan_only": false}, {"name": "啦啦隊員", "brand": "中信兄弟", "venue": "運動中心", "num": "3", "floor": "1 樓", "min_age": 3, "age_source": "stated", "pay_type": "pay", "amount": 5, "highlight": "化身人氣啦啦隊，體驗表演與應援。", "take_home": false, "taiwan_only": false}, {"name": "籃球選手", "brand": "", "venue": "運動中心", "num": "3", "floor": "1 樓", "min_age": 5, "age_source": "stated", "pay_type": "pay", "amount": 5, "highlight": "在運動中心體驗籃球選手的訓練與比賽。", "take_home": false, "taiwan_only": false}, {"name": "棒球選手", "brand": "", "venue": "運動中心", "num": "3", "floor": "1 樓", "min_age": 5, "age_source": "stated", "pay_type": "pay", "amount": 5, "highlight": "在運動中心體驗棒球選手的訓練與比賽。", "take_home": false, "taiwan_only": false}, {"name": "燒肉職人", "brand": "", "venue": "燒肉職人工作坊", "num": "13", "floor": "1 樓", "min_age": 5, "age_source": "stated", "pay_type": "twd", "amount": 199, "highlight": "在燒肉職人工作坊動手烤肉，體驗燒肉職人的工作。另外收取新台幣，不能用 kidZos 抵。", "take_home": false, "taiwan_only": false}, {"name": "披薩製作員", "brand": "", "venue": "披薩工坊", "num": "32", "floor": "2 樓", "min_age": 3, "age_source": "default", "pay_type": "twd", "amount": 380, "highlight": "在披薩工坊親手做披薩，體驗披薩製作。另外收取新台幣，不能用 kidZos 抵。", "take_home": false, "taiwan_only": false}];
+const AGE_NOTE = "實際最低年齡限制以現場公告為準";
+let payFilter = "all";
+
+function payLabel(j) {
+  if (j.pay_type === "earn") return {cls: "earn", text: "賺 " + j.amount};
+  if (j.pay_type === "pay") return {cls: "pay", text: "付 " + j.amount};
+  return {cls: "twd", text: "NT$" + j.amount};
+}
+
+function ageLabel(j) {
+  if (j.age_source === "default") {
+    return {cls: "def", text: "資料未標示年齡門檻，依孩童票暫以 3 歲起可玩"};
+  }
+  return {cls: "", text: j.min_age + " 歲以上"};
+}
+
+function placeLine(j) {
+  const brand = j.brand ? j.brand + "｜" : "";
+  const venue = j.venue ? j.venue + "｜" : "";
+  return brand + venue + "#" + j.num + "｜" + j.floor;
+}
+
+function jobCard(j) {
+  const p = payLabel(j);
+  const a = ageLabel(j);
+  const extras = [
+    j.take_home ? '<span class="mini">可帶回家</span>' : "",
+    j.taiwan_only ? '<span class="mini">台灣限定</span>' : ""
+  ].join("");
+  const blurb = j.highlight ? '<p class="blurb">' + j.highlight + "</p>" : "";
+  return '<article class="job">' +
+    '<div class="job-top">' +
+      '<div class="job-id"><b>#' + j.num + "</b>" + j.floor + "</div>" +
+      "<h3>" + j.name + extras + "</h3>" +
+      '<span class="paytag ' + p.cls + '">' + p.text + "</span>" +
+    "</div>" +
+    '<p class="meta">' + placeLine(j) + "</p>" +
+    '<span class="age ' + a.cls + '">' + a.text + "</span>" +
+    blurb +
+    '<p class="meta" style="margin-top:6px">' + AGE_NOTE + "</p>" +
+  "</article>";
+}
+
+function currentAge() {
+  const v = document.getElementById("ageSelect").value;
+  return v === "all" ? "all" : Number(v);
+}
+
+function filteredJobs() {
+  const age = currentAge();
+  const q = (document.getElementById("jobSearch").value || "").trim().toLowerCase();
+  return JOBS.filter(function(j) {
+    if (age !== "all" && age < j.min_age) return false;
+    if (payFilter !== "all" && j.pay_type !== payFilter) return false;
+    if (q) {
+      const hay = [j.name, j.brand, j.venue, j.highlight, "#" + j.num].join(" ").toLowerCase();
+      if (hay.indexOf(q) === -1) return false;
+    }
+    return true;
+  });
+}
+
+function renderJobs() {
+  const list = filteredJobs();
+  const age = currentAge();
+  const ageText = age === "all" ? "全部年齡" : (age === 10 ? "10 歲以上" : age + " 歲");
+  const typeText = {all: "", earn: "（賺 kidZos）", pay: "（付 kidZos）", twd: "（另付新台幣）"}[payFilter];
+  document.getElementById("jobCount").innerHTML =
+    ageText + "可玩 <em>" + list.length + "</em> 個職業" + typeText +
+    "（全部共 " + JOBS.length + " 個）";
+  document.getElementById("jobList").innerHTML =
+    list.length ? list.map(jobCard).join("") : '<p class="empty">沒有符合的職業，試試調整年紀或篩選。</p>';
+}
+
+function showView(v, scrollTop) {
+  if (v === "jobs") v = "home";
+  document.querySelectorAll(".view").forEach(function(el) {
+    el.classList.toggle("on", el.id === "v-" + v);
+  });
+  document.querySelectorAll("nav.tabs button").forEach(function(b) {
+    b.classList.toggle("on", b.dataset.v === v);
+  });
+  document.getElementById("hero").style.display = v === "home" ? "block" : "none";
+  document.getElementById("topbar").classList.toggle("on", v !== "home");
+  if (scrollTop !== false) window.scrollTo(0, 0);
+  const url = new URL(location.href);
+  if (v === "home") url.searchParams.delete("tab");
+  else url.searchParams.set("tab", v);
+  history.replaceState(null, "", url.pathname + url.search + url.hash);
+}
+
+document.querySelectorAll("nav.tabs button").forEach(function(b) {
+  b.addEventListener("click", function() { showView(b.dataset.v); });
+});
+document.getElementById("ageSelect").addEventListener("change", renderJobs);
+document.getElementById("jobSearch").addEventListener("input", renderJobs);
+document.querySelectorAll(".chip").forEach(function(c) {
+  c.addEventListener("click", function() {
+    payFilter = c.dataset.pay;
+    document.querySelectorAll(".chip").forEach(function(x) { x.classList.toggle("on", x === c); });
+    renderJobs();
+  });
+});
+
+(function init() {
+  const params = new URLSearchParams(location.search);
+  let tab = params.get("tab") || "home";
+  if (tab === "jobs") tab = "home";
+  if (params.get("age")) document.getElementById("ageSelect").value = params.get("age");
+  if (params.get("pay")) {
+    payFilter = params.get("pay");
+    document.querySelectorAll(".chip").forEach(function(x) {
+      x.classList.toggle("on", x.dataset.pay === payFilter);
+    });
+  }
+  renderJobs();
+  if (tab !== "home") showView(tab, false);
+})();
+</script>
+</body>
+</html>
